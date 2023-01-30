@@ -17,10 +17,6 @@ const API_URL = environment.apiUrl;
 })
 export class ApiService {
   log: any = '';
-  //TODO: PUT to interceptor requests
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  };
 
   constructor(private http: HttpClient) {}
 
@@ -37,7 +33,7 @@ export class ApiService {
   // /todolist
   addTodoList(todoList: TodoList): Observable<TodoList> {
     return this.http
-      .post<TodoList>(API_URL + 'todolist', todoList, this.httpOptions)
+      .post<TodoList>(API_URL + 'todolist', todoList)
       .pipe(catchError(this.handleError('addHero', todoList)));
   }
 
@@ -54,8 +50,7 @@ export class ApiService {
     return this.http
       .put<TodoList>(
         API_URL + 'todolist/' + todoList.id,
-        todoList,
-        this.httpOptions
+        todoList
       )
       .pipe(catchError(this.handleError('addHero', todoList)));
   }
@@ -63,7 +58,7 @@ export class ApiService {
   // /todolist/:id
   deleteTodoList(todoListId: number): Observable<unknown> {
     return this.http
-      .delete(API_URL + 'todolist/' + todoListId, this.httpOptions)
+      .delete(API_URL + 'todolist/' + todoListId)
       .pipe(catchError(this.handleError('deleteItem', todoListId)));
   }
   //////////////////////////////////////// TODOLIST ITEM ////////////////////////////////////////////////////////////
@@ -73,8 +68,7 @@ export class ApiService {
     return this.http
       .post<TodoItem>(
         API_URL + 'todolist/' + id + '/item',
-        todoItem,
-        this.httpOptions
+        todoItem
       )
       .pipe(catchError(this.handleError('addItem', todoItem)));
   }
@@ -104,8 +98,7 @@ export class ApiService {
     return this.http
       .put<TodoItem>(
         API_URL + 'todolist/' + todoListId + '/item/' + todoItem.id,
-        todoItem,
-        this.httpOptions
+        todoItem
       )
       .pipe(catchError(this.handleError('addItem', todoItem)));
   }
@@ -115,8 +108,7 @@ export class ApiService {
   deleteItem(todoListId: number, todoItemId: number): Observable<unknown> {
     return this.http
       .delete(
-        API_URL + 'todolist/' + todoListId + '/item/' + todoItemId,
-        this.httpOptions
+        API_URL + 'todolist/' + todoListId + '/item/' + todoItemId
       )
       .pipe(catchError(this.handleError('deleteItem', todoItemId)));
   }

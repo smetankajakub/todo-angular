@@ -44,7 +44,6 @@ import { HttpClientModule } from '@angular/common/http';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    HttpClientModule
   ],
   exports: [
     TodoRoutingModule
