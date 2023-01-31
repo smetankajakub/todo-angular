@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoRoutingModule } from './todo-routing.module';
 import { TodoPageComponent } from './pages/todo-page/todo-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //ANGULAR MATERIAL
 import { MatSliderModule } from '@angular/material/slider';
@@ -21,16 +20,19 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { TodoItemDetailComponent } from './components/todo-item-detail/todo-item-detail.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { TodoService } from './services/todo.service';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
 
 @NgModule({
   declarations: [
-    TodoItemComponent,
     TodoListComponent,
     TodoPageComponent,
-    TodoItemDetailComponent
+    TodoItemDetailComponent,
+    TodoItemComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     SharedModule,
     MatSliderModule,
@@ -45,8 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  exports: [
-    TodoRoutingModule
-  ]
+  exports: [TodoRoutingModule],
+  providers: [TodoService],
 })
-export class TodoModule { }
+export class TodoModule {}

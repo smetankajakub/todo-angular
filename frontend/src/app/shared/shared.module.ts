@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '../core/services/api.service';
-import { HttpClientModule } from '@angular/common/http';
-
-
+import { RadioFilterPipe } from './pipes/radio-filter.pipe';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    HttpClientModule
-  ],
-  exports: []
+  declarations: [RadioFilterPipe, SearchFilterPipe],
+  imports: [CommonModule],
+  exports: [RadioFilterPipe, SearchFilterPipe],
 })
-export class SharedModule { }
+export class SharedModule {}

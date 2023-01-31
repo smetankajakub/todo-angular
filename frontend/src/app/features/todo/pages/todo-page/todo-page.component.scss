@@ -1,0 +1,23 @@
+#blured {
+  background-color: #fff;
+  border-radius: 3px;
+  border-color: #ccc;
+  box-shadow: #ccc 0px 5px 20px -5px;
+  border-style: dashed;
+  list-style: none;
+  padding: 10px;
+  margin: 15px;
+  min-height: 300px;
+
+  text-align: center;
+  vertical-align: middle;
+  width: 250px;
+  display: inline-block;
+}
+
+#blurred-title {
+  filter: blur(4px);
+  color: #ccc;
+}
+
+

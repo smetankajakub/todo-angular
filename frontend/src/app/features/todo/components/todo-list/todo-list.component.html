@@ -1,121 +1,73 @@
-<section style="margin: 0 1% 1%">
-  <button
-    mat-raised-button
-    color="accent"
-    data-cy="newList"
-  >
-    Add new todolist
-  </button>
-</section>
-<!-- <section>
-    (click)="createOrUpdateTodoList('create', undefined)"
-
-    <div class="list" name="todoLists" *ngFor="let todo of todoLists">
-    <p style="font-size: smaller; color: #ccc; margin: 0; text-align: right">
+<div class="todolist" name="todoLists">
+  <header>
+    <div>
       <span>
         <a>
           <mat-icon
-            style="text-align: right; transform: scale(0.8); cursor: pointer"
             matSuffix
-            (click)="createOrUpdateTodoList('update', todo)"
+            (click)="createOrUpdateTodoList('update', todoList)"
             >edit</mat-icon
           >
-          <mat-icon
-            style="text-align: right; transform: scale(0.8); cursor: pointer"
-            matSuffix
-            (click)="deleteTodoList(todo)"
+          <mat-icon matSuffix (click)="deleteTodoList(todoList)"
             >delete</mat-icon
           >
         </a>
       </span>
-    </p>
-    <section class="btns">
-      <mat-form-field
-        color="accent"
-        style="margin: auto; width: 180px; padding-left: 25px"
-      >
+    </div>
+  </header>
+  <section class="btns">
+    <div>
+      <mat-form-field color="accent">
         <input
           matInput
           type="text"
           placeholder="Search"
-          [(ngModel)]="todo.query"
+          [(ngModel)]="todoList.query"
         />
         <button mat-button matPrefix mat-icon-button>
           <mat-icon>search</mat-icon>
         </button>
       </mat-form-field>
-      <div style="text-align: center; width: 250px">
-        <button
-          mat-raised-button
-          color="accent"
-          style="width: 200px; padding: 0 25px"
-          (click)="openDialogAddTask(todo)"
-          data-cy="newTask"
-        >
-          Add new task +
-        </button>
-      </div>
+      <button
+        class="new-task-btn"
+        mat-raised-button
+        color="accent"
+        (click)="openDialogAddTask(todoList)"
+      >
+        Add new task +
+      </button>
+    </div>
 
-      <div name="filter" style="margin: 20px">
-        <label for="filter">Items filter by status: </label>
-        <div style="text-align: center; margin: 5px">
-          <mat-radio-group
-            [(ngModel)]="todo.radio"
-            (ngModelChange)="filterChange($event)"
-          >
-            <mat-radio-button [checked]="true" value="">All</mat-radio-button
-            >&nbsp; <mat-radio-button value="true">Done</mat-radio-button>&nbsp;
-            <mat-radio-button value="false">Active</mat-radio-button>&nbsp;
-          </mat-radio-group>
-        </div>
+    <div id="radio-filter" name="radio-filter">
+      <label for="radio-filter">Items filter by status: </label>
+      <div>
+        <mat-radio-group
+          [(ngModel)]="todoList.radio"
+          (ngModelChange)="filterChange($event)"
+        >
+          <mat-radio-button [checked]="true" value="">All</mat-radio-button
+          >&nbsp; <mat-radio-button value="true">Done</mat-radio-button>&nbsp;
+          <mat-radio-button value="false">Active</mat-radio-button>&nbsp;
+        </mat-radio-group>
       </div>
-    </section>
-    <section class="content">
-      <h4 style="text-align: left; padding: 0 25px; margin-top: 0">
-        {{ todo.title }}
-      </h4>
-      <todolist-item
-        *ngFor="
-          let todoItem of todo.items
-            | searchFilter : todo.query
-            | radioFilter : todo.radio
-        "
-        [todoList]="todo"
-        [todoItem]="todoItem"
-      ></todolist-item>
-      <div
-        style="
-          text-align: center;
-          width: 200px;
-          border-style: dashed;
-          padding: 10px;
-          margin: auto;
-          color: #ccc;
-        "
-        *ngIf="todo.items && todo.items.length > 0"
-      >
-        <button mat-mini-fab color="accent" (click)="openDialogAddTask(todo)">
-          +
-        </button>
-      </div>
-    </section>
-  </div>
-  <div
-    class="list"
-    style="
-      min-height: 300px;
-      vertical-align: middle;
-      text-align: center;
-      border-color: #ccc;
-      border-style: dashed;
-    "
-  >
-    <button mat-fab color="accent">
-      <mat-icon (click)="createOrUpdateTodoList('create', undefined)"
-        >add</mat-icon
-      >
-    </button>
-    <h2 style="filter: blur(4px); color: #ccc">blured title</h2>
-    <li></li>
-  </div>
-</section> -->
+    </div>
+  </section>
+  <section class="content">
+    <h2 class="todo-list-title">
+      {{ todoList.title }}
+    </h2>
+
+    <todolist-item
+      *ngFor="
+        let todoItem of todoList.items
+          | searchFilter : todoList.query
+          | radioFilter : todoList.radio
+      "
+      [todoList]="todoList"
+      [todoItem]="todoItem"
+    ></todolist-item>
+    <div class="bottom-btn" *ngIf="todoList.items && todoList.items.length > 0">
+      <button mat-mini-fab color="accent">+</button>
+    </div>
+  </section>
+</div>
