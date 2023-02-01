@@ -3,10 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'todolists',
+    path: 'todo',
     loadChildren: () =>
       import('./features/todo/todo.module').then((m) => m.TodoModule),
   },
+  {
+    path: 'identity',
+    loadChildren: () =>
+      import('./features/identity/identity.module').then(
+        (m) => m.IdentityModule
+      ),
+  },
+  {
+    path: '**',
+    redirectTo: 'identity',
+
+  }
 ];
 
 @NgModule({

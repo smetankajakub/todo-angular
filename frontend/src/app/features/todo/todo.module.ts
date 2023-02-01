@@ -22,7 +22,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TodoService } from './services/todo.service';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
-
+import { todoListReducer } from './state/reducers/todo-item.reducer';
+import { StoreFeatureModule, StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 @NgModule({
   declarations: [
     TodoListComponent,
@@ -46,6 +48,8 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
+
+    // StoreModule.forFeature('todoList', todoListReducer)
   ],
   exports: [TodoRoutingModule],
   providers: [TodoService],

@@ -58,7 +58,7 @@ export class TodoPageComponent implements OnInit {
     const dialogRef = this.dialog.open(TodoItemDetailComponent, {
       width: '500px',
       data: {
-        list: todoList !== undefined ? todoList : ({} as TodoList),
+        list: todoList !== undefined ? todoList : new TodoList(),
         flag: flag,
       },
     });

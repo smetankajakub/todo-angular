@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TodoPageComponent } from './pages/todo-page/todo-page.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
-    path: 'list',
-    component: TodoPageComponent,
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: '**',
-    redirectTo: 'list'
+    pathMatch: 'full',
+    redirectTo: 'login'
   }
 ];
 
@@ -17,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TodoRoutingModule {}
+export class IdentityRoutingModule {}
