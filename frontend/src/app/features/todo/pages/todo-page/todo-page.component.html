@@ -4,9 +4,14 @@
   </section>
 
   <section class="todolists" style="overflow-x: scroll">
-    <li *ngFor="let todolist of todoLists" style="display: inline">
-      <todo-list [todoList]="todolist"></todo-list>
-    </li>
+    <ng-container *ngIf="todoLists$ | async as todolists; else empty">
+      <li *ngFor="let todolist of todolists" style="display: inline">
+        <todo-list [todoList]="todolist"></todo-list>
+      </li>
+
+    </ng-container>
+    <ng-template #empty>
+    </ng-template>
     <li style="display: inline">
       <div id="blured">
         <button mat-fab color="accent">

@@ -52,7 +52,7 @@ export class ApiService {
         API_URL + 'todolist/' + todoList.id,
         todoList
       )
-      .pipe(catchError(this.handleError('addHero', todoList)));
+      .pipe(catchError(this.handleError('updateTodoList', todoList)));
   }
   // DELETE
   // /todolist/:id
@@ -100,7 +100,7 @@ export class ApiService {
         API_URL + 'todolist/' + todoListId + '/item/' + todoItem.id,
         todoItem
       )
-      .pipe(catchError(this.handleError('addItem', todoItem)));
+      .pipe(catchError(this.handleError('updateItem', todoItem)));
   }
 
   // DELETE

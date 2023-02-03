@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api.service';
 import { TodoItemDetailComponent } from '../../components/todo-item-detail/todo-item-detail.component';
 import { TodoItem } from '../../models/todo-item';
 import { TodoList } from '../../models/todo-list';
-
+import * as TodolistActions from '../../state/todolists.actions';
+import { getTodoLists } from '../../state/todolists.selector';
+import { EntityTodoList } from '../../state/todolists.state';
 @Component({
   selector: 'app-todo-page',
   templateUrl: './todo-page.component.html',
@@ -13,25 +17,25 @@ import { TodoList } from '../../models/todo-list';
 export class TodoPageComponent implements OnInit {
   searchFilter: unknown = '';
   radio: unknown = '';
-  todoLists: TodoList[] = [];
+  todoLists$!: Observable<EntityTodoList[]>;
   todoItem!: TodoItem;
 
-  constructor(public dialog: MatDialog, private apiService: ApiService) {}
+  constructor(
+    public dialog: MatDialog,
+    private apiService: ApiService,
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
-    this.getTodoLists();
+    this.store.dispatch(TodolistActions.loadAllTodoLists());
+    this.todoLists$ = this.store.select(getTodoLists)
+    
   }
 
-  getTodoLists(): void {
-    this.apiService.getAllTodoLists().subscribe((todos) => {
-      this.todoLists = todos;
-    });
-  }
-
-  deleteTodoList(todoList: TodoList): void {
-    this.todoLists = this.todoLists.filter((h) => h !== todoList);
-    this.apiService.deleteTodoList(todoList.id).subscribe();
-  }
+  // deleteTodoList(todoList: TodoList): void {
+  //   this.todoLists = this.todoLists.filter((h) => h !== todoList);
+  //   this.apiService.deleteTodoList(todoList.id).subscribe();
+  // }
 
   filterChange(e: string): void {
     this.radio = e;
@@ -63,10 +67,10 @@ export class TodoPageComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result !== undefined) {
-        this.todoLists.push(result);
-      }
-    });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result !== undefined) {
+    //     this.todoLists.push(result);
+    //   }
+    // });
   }
 }

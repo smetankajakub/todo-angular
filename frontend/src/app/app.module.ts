@@ -14,7 +14,8 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './core/services/auth.service';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { getStorage, provideStorage } from "@angular/fire/storage";
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { EffectsModule } from '@ngrx/effects';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -27,8 +28,13 @@ import { getStorage, provideStorage } from "@angular/fire/storage";
     }),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage())
-    // StoreModule.forRoot(),
+    provideStorage(() => getStorage()),
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      name: 'Todolists app',
+      maxAge: 25,
+    }),
+    EffectsModule.forRoot([])
   ],
   providers: [
     {
