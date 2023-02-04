@@ -11,10 +11,7 @@ import { getTodoLists } from '../state/todolists.selector';
 import { EntityTodoList } from '../state/todolists.state';
 @Injectable()
 export class TodoService {
-  constructor(
-    private store: Store,
-    private dialog: MatDialog
-  ) {}
+  constructor(private store: Store, private dialog: MatDialog) {}
 
   getTodoLists(): Observable<EntityTodoList[]> {
     this.store.dispatch(TodolistActions.loadAllTodoLists());
@@ -53,6 +50,7 @@ export class TodoService {
     const dialogRef = this.dialog.open(TodoItemDetailComponent, {
       width: '500px',
       data: {
+        list: todoList,
         item: {} as TodoItem,
         flag: 'create',
         id: todoList.id,
@@ -64,5 +62,17 @@ export class TodoService {
     //     todoList.items.push(result);
     //   }
     // });
+  }
+
+  public addNewItem(todoList: TodoList, todoItem: TodoItem): void {
+    this.store.dispatch(TodolistActions.addNewTodoItem({ todoList, todoItem }));
+  }
+
+  public updateItem(todoList: TodoList, todoItem: TodoItem): void {
+    this.store.dispatch(TodolistActions.updateTodoItem({ todoList, todoItem }));
+  }
+
+  public deleteItem(todoList: TodoList, todoItem: TodoItem): void {
+    this.store.dispatch(TodolistActions.deleteTodoItem({ todoList, todoItem }));
   }
 }

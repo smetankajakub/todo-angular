@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TodoItem } from '../../models/todo-item';
 import { TodoList } from '../../models/todo-list';
+import { TodoService } from '../../services/todo.service';
+import { EntityTodoList } from '../../state/todolists.state';
 
 @Component({
   selector: 'app-todo-item-detail',
@@ -17,28 +19,20 @@ export class TodoItemDetailComponent implements OnInit {
       item: TodoItem;
       flag: string;
       id: number;
-    }
+    },
+    public todoService: TodoService
   ) {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-  save(item: TodoItem, flag: string, id: number): void {
-    console.log(item);
-    console.log(flag);
-    console.log(id);
-    console.log(this.data);
-
+  save(item: TodoItem, flag: string, id: number, todoList: EntityTodoList): void {
     
-    // if (flag === 'create') {
-    //   // return this.todoService.updateTodo(list);
-    //   this.apiService.addItemToList(id, item).subscribe((todoItem) => {
-    //     this.dialogRef.close(todoItem);
-    //   });
-    // } else {
-    //   this.apiService.updateItem(item.todolistId, item).subscribe(() => {
-    //   });
-    // }
+    if (flag === 'create') {
+      this.todoService.addNewItem(todoList, item);
+    } else {
+      this.todoService.updateItem(todoList, item);
+    }
     this.dialogRef.close();
   }
   ngOnInit(): void {}

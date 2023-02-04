@@ -25,16 +25,8 @@ export class TodoItemComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {}
 
-  deleteItem(todoListId: number, todoItemId: number): void {
-    //   this.todoList.items = this.todoList.items.filter(
-    //     (h) => h.id !== todoItemId
-    //   );
-    //   this.apiService.deleteItem(todoListId, todoItemId).subscribe();
-  }
-
-  toggleDoneStatus(todoListId: number, todoItem: TodoItem): void {
-    todoItem.done = !todoItem.done;
-    this.apiService.updateItem(todoListId, todoItem).subscribe();
+  deleteItem(): void {
+    this.todoService.deleteItem(this.todoList, this.todoItem)
   }
 
   openDialogEditTask(): void {
@@ -43,7 +35,7 @@ export class TodoItemComponent implements OnInit {
       data: {
         item: { ...this.todoItem },
         flag: 'update',
-        todoList: this.todoList
+        list: this.todoList
       },
     });
   }

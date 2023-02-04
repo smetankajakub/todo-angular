@@ -74,4 +74,90 @@ export class TodoListsEffects {
       })
     );
   });
+
+  addNewTodoItem$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TodolistActions.addNewTodoItem),
+      mergeMap((action) => {
+        console.log(action);
+        return this.apiService
+          .addItemToList(action.todoList.id, action.todoItem)
+          .pipe(
+            map((data) => {
+              console.log('add new item: ', data);
+              const updatedTodoList: Update<TodoList> = {
+                id: action.todoList.id,
+                changes: {
+                  items: [...action.todoList.items, action.todoItem],
+                },
+              };
+              // const todoList = { ...action.todoList, action.todoList.items };
+              return TodolistActions.addNewTodoItemSuccess({
+                todoList: updatedTodoList,
+              });
+            })
+          );
+      })
+    );
+  });
+
+  updateTodoItem$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TodolistActions.updateTodoItem),
+      mergeMap((action) => {
+        return this.apiService
+          .updateItem(action.todoList.id, action.todoItem)
+          .pipe(
+            map((data) => {
+              const index = action.todoList.items.findIndex(
+                (item) => item.id === action.todoItem.id
+              );
+              const copy = [...action.todoList.items];
+              copy.splice(index, 1);
+              const updatedTodoList: Update<TodoList> = {
+                id: action.todoList.id,
+                changes: {
+                  items: [...copy, action.todoItem],
+                },
+              };
+              return TodolistActions.updateTodoItemSuccess({
+                todoList: updatedTodoList,
+              });
+            })
+          );
+      })
+    );
+  });
+
+  deleteTodoItem$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TodolistActions.deleteTodoItem),
+      mergeMap((action) => {
+        return this.apiService
+          .deleteItem(action.todoList.id, action.todoItem.id)
+          .pipe(
+            map((data) => {
+              console.log('data: ', data);
+              console.log(action.todoList);
+              console.log(action.todoItem);
+              const index = action.todoList.items.findIndex(
+                (item) => item.id === action.todoItem.id
+              );
+              const copy = [...action.todoList.items];
+              copy.splice(index, 1);
+              const updatedTodoList: Update<TodoList> = {
+                id: action.todoList.id,
+                changes: {
+                  items: [...copy],
+                },
+              };
+              console.log(updatedTodoList);
+              return TodolistActions.deleteTodoItemSuccess({
+                todoList: updatedTodoList,
+              });
+            })
+          );
+      })
+    );
+  });
 }

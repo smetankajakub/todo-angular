@@ -15,7 +15,6 @@ import { EntityTodoList } from '../../state/todolists.state';
   styleUrls: ['./todo-page.component.scss'],
 })
 export class TodoPageComponent implements OnInit {
-  // todoLists$!: Subscription;
   todoLists$!: Observable<EntityTodoList[]>;
   todoLists: EntityTodoList[] = [];
   todoItem!: TodoItem;
@@ -25,7 +24,6 @@ export class TodoPageComponent implements OnInit {
   ngOnInit(): void {
     this.todoLists$ = this.todoService.getTodoLists();
   }
-  //TODO: put to separate service
   createOrUpdateTodoList(flag: string, todoList?: TodoList): void {
     this.todoService.createOrUpdateTodoList(flag, todoList);
   }

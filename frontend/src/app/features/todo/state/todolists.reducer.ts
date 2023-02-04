@@ -26,7 +26,19 @@ const _todoListsReducer = createReducer(
   }),
 	on(TodolistActions.deleteTodoListSuccess, (state, action) => {
 		return todoListAdapter.removeOne(action.todoListId, state)
-	})
+	}),
+
+  on(TodolistActions.addNewTodoItemSuccess, (state, action) => {
+    return todoListAdapter.updateOne(action.todoList, state)
+  }),
+  on(TodolistActions.updateTodoItemSuccess, (state, action) => {
+    return todoListAdapter.updateOne(action.todoList, state)
+  }),
+  on(TodolistActions.deleteTodoItemSuccess, (state, action) => {
+    console.log(action);
+    console.log(state);
+    return todoListAdapter.updateOne(action.todoList, state)
+  })
 );
 
 export function todoListsReducer(
