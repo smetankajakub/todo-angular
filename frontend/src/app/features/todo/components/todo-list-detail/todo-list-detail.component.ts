@@ -28,17 +28,13 @@ export class TodoListDetailComponent implements OnInit {
     this.dialogRef.close();
   }
   save(todo: EntityTodoList, flag: string): void {
-    // this.todo
     this.dialogRef.close();
     if (flag === 'create') {
       return this.todoService.addNewTodo(todo);
     } else {
       return this.todoService.updateTodo(todo);
     }
-    
   }
 
-  ngOnInit(): void {
-    console.log(this.data);
-  }
+  ngOnInit(): void {}
 }

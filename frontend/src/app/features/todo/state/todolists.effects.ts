@@ -79,12 +79,10 @@ export class TodoListsEffects {
     return this.actions$.pipe(
       ofType(TodolistActions.addNewTodoItem),
       mergeMap((action) => {
-        console.log(action);
         return this.apiService
           .addItemToList(action.todoList.id, action.todoItem)
           .pipe(
             map((data) => {
-              console.log('add new item: ', data);
               const updatedTodoList: Update<TodoList> = {
                 id: action.todoList.id,
                 changes: {
@@ -136,10 +134,7 @@ export class TodoListsEffects {
         return this.apiService
           .deleteItem(action.todoList.id, action.todoItem.id)
           .pipe(
-            map((data) => {
-              console.log('data: ', data);
-              console.log(action.todoList);
-              console.log(action.todoItem);
+            map(() => {
               const index = action.todoList.items.findIndex(
                 (item) => item.id === action.todoItem.id
               );
@@ -151,7 +146,6 @@ export class TodoListsEffects {
                   items: [...copy],
                 },
               };
-              console.log(updatedTodoList);
               return TodolistActions.deleteTodoItemSuccess({
                 todoList: updatedTodoList,
               });

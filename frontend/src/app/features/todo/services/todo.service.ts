@@ -20,15 +20,14 @@ export class TodoService {
 
   addNewTodo(todoList: EntityTodoList): void {
     this.store.dispatch(TodolistActions.addNewTodoList({ todoList }));
-    // return this.store.select(getTodoLists);
   }
+
   updateTodo(todoList: EntityTodoList): void {
-    console.log('update todo');
     this.store.dispatch(TodolistActions.updateTodoList({ todoList }));
   }
+
   deleteTodoListById(todoListId: number): void {
     this.store.dispatch(TodolistActions.deleteTodoList({ todoListId }));
-    // return this.apiService.deleteTodoList(todoListId);
   }
 
   createOrUpdateTodoList(flag: string, todoList?: TodoList): void {

@@ -18,7 +18,6 @@ export class AppHttpInterceptor implements HttpInterceptor {
     const req = request.clone({
       headers: request.headers.set('Content-Type', 'application/json'),
     });
-    console.log('intercept: ', req);
     return next.handle(req);
   }
 }
