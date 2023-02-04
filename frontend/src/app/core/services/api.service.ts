@@ -10,6 +10,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { TodoItem } from '../../features/todo/models/todo-item';
 import { TodoList } from '../../features/todo/models/todo-list';
+import { EntityTodoList } from 'src/app/features/todo/state/todolists.state';
 
 const API_URL = environment.apiUrl;
 @Injectable({
@@ -31,9 +32,9 @@ export class ApiService {
 
   // POST
   // /todolist
-  addTodoList(todoList: TodoList): Observable<TodoList> {
+  addTodoList(todoList: EntityTodoList): Observable<EntityTodoList> {
     return this.http
-      .post<TodoList>(API_URL + 'todolist', todoList)
+      .post<EntityTodoList>(API_URL + 'todolist', todoList)
       .pipe(catchError(this.handleError('addHero', todoList)));
   }
 
@@ -46,7 +47,7 @@ export class ApiService {
   }
   // PUT
   // /todolist/:id
-  updateTodoList(todoList: TodoList): Observable<TodoList> {
+  updateTodoList(todoList: EntityTodoList): Observable<EntityTodoList> {
     return this.http
       .put<TodoList>(
         API_URL + 'todolist/' + todoList.id,

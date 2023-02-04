@@ -34,7 +34,7 @@ import { EffectsModule } from '@ngrx/effects';
       name: 'Todolists app',
       maxAge: 25,
     }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
   ],
   providers: [
     {

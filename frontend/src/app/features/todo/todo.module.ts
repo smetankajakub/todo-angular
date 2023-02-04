@@ -27,12 +27,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { todoListsReducer } from './state/todolists.reducer'
 import { EffectsModule } from '@ngrx/effects';
 import { TodoListsEffects } from './state/todolists.effects';
+import { TodoListDetailComponent } from './components/todo-list-detail/todo-list-detail.component';
 @NgModule({
   declarations: [
     TodoListComponent,
     TodoPageComponent,
     TodoItemDetailComponent,
     TodoItemComponent,
+    TodoListDetailComponent,
   ],
   imports: [
     CommonModule,

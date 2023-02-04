@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api.service';
-import { TodoItemDetailComponent } from '../../components/todo-item-detail/todo-item-detail.component';
 import { TodoItem } from '../../models/todo-item';
 import { TodoList } from '../../models/todo-list';
+import { TodoService } from '../../services/todo.service';
 import * as TodolistActions from '../../state/todolists.actions';
 import { getTodoLists } from '../../state/todolists.selector';
 import { EntityTodoList } from '../../state/todolists.state';
@@ -15,62 +15,18 @@ import { EntityTodoList } from '../../state/todolists.state';
   styleUrls: ['./todo-page.component.scss'],
 })
 export class TodoPageComponent implements OnInit {
-  searchFilter: unknown = '';
-  radio: unknown = '';
+  // todoLists$!: Subscription;
   todoLists$!: Observable<EntityTodoList[]>;
+  todoLists: EntityTodoList[] = [];
   todoItem!: TodoItem;
 
-  constructor(
-    public dialog: MatDialog,
-    private apiService: ApiService,
-    private store: Store
-  ) {}
+  constructor(public dialog: MatDialog, private todoService: TodoService) {}
 
   ngOnInit(): void {
-    this.store.dispatch(TodolistActions.loadAllTodoLists());
-    this.todoLists$ = this.store.select(getTodoLists)
-    
+    this.todoLists$ = this.todoService.getTodoLists();
   }
-
-  // deleteTodoList(todoList: TodoList): void {
-  //   this.todoLists = this.todoLists.filter((h) => h !== todoList);
-  //   this.apiService.deleteTodoList(todoList.id).subscribe();
-  // }
-
-  filterChange(e: string): void {
-    this.radio = e;
-  }
-
-  openDialogAddTask(todoList: TodoList): void {
-    const dialogRef = this.dialog.open(TodoItemDetailComponent, {
-      width: '500px',
-      data: {
-        item: this.todoItem,
-        flag: 'create',
-        id: todoList.id,
-      },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result !== undefined) {
-        todoList.items.push(result);
-      }
-    });
-  }
-
+  //TODO: put to separate service
   createOrUpdateTodoList(flag: string, todoList?: TodoList): void {
-    const dialogRef = this.dialog.open(TodoItemDetailComponent, {
-      width: '500px',
-      data: {
-        list: todoList !== undefined ? todoList : new TodoList(),
-        flag: flag,
-      },
-    });
-
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result !== undefined) {
-    //     this.todoLists.push(result);
-    //   }
-    // });
+    this.todoService.createOrUpdateTodoList(flag, todoList);
   }
 }
