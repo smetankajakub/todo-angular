@@ -24,40 +24,40 @@ import { TodoService } from './services/todo.service';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { StoreFeatureModule, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { todoListsReducer } from './state/todolists.reducer'
+import { todoListsReducer } from './state/todolists.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { TodoListsEffects } from './state/todolists.effects';
 import { TodoListDetailComponent } from './components/todo-list-detail/todo-list-detail.component';
 @NgModule({
-  declarations: [
-    TodoListComponent,
-    TodoPageComponent,
-    TodoItemDetailComponent,
-    TodoItemComponent,
-    TodoListDetailComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SharedModule,
-    MatSliderModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatInputModule,
-    MatGridListModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
+	declarations: [
+		TodoListComponent,
+		TodoPageComponent,
+		TodoItemDetailComponent,
+		TodoItemComponent,
+		TodoListDetailComponent
+	],
+	imports: [
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		SharedModule,
+		MatSliderModule,
+		MatButtonModule,
+		MatIconModule,
+		MatListModule,
+		MatInputModule,
+		MatGridListModule,
+		MatCheckboxModule,
+		MatDialogModule,
+		MatRadioModule,
+		MatDatepickerModule,
+		MatNativeDateModule,
 
-    StoreModule.forFeature('todo', todoListsReducer),
+		StoreModule.forFeature('todo', todoListsReducer),
 
-    EffectsModule.forFeature([TodoListsEffects]),
-  ],
-  exports: [TodoRoutingModule],
-  providers: [TodoService],
+		EffectsModule.forFeature([TodoListsEffects])
+	],
+	exports: [TodoRoutingModule],
+	providers: [TodoService]
 })
 export class TodoModule {}

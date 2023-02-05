@@ -11,67 +11,61 @@ import { getTodoLists } from '../state/todolists.selector';
 import { EntityTodoList } from '../state/todolists.state';
 @Injectable()
 export class TodoService {
-  constructor(private store: Store, private dialog: MatDialog) {}
+	constructor(private store: Store, private dialog: MatDialog) {}
 
-  getTodoLists(): Observable<EntityTodoList[]> {
-    this.store.dispatch(TodolistActions.loadAllTodoLists());
-    return this.store.select(getTodoLists);
-  }
+	getTodoLists(): Observable<EntityTodoList[]> {
+		this.store.dispatch(TodolistActions.loadAllTodoLists());
+		return this.store.select(getTodoLists);
+	}
 
-  addNewTodo(todoList: EntityTodoList): void {
-    this.store.dispatch(TodolistActions.addNewTodoList({ todoList }));
-  }
+	addNewTodo(todoList: EntityTodoList): void {
+		this.store.dispatch(TodolistActions.addNewTodoList({ todoList }));
+	}
 
-  updateTodo(todoList: EntityTodoList): void {
-    this.store.dispatch(TodolistActions.updateTodoList({ todoList }));
-  }
+	updateTodo(todoList: EntityTodoList): void {
+		this.store.dispatch(TodolistActions.updateTodoList({ todoList }));
+	}
 
-  deleteTodoListById(todoListId: number): void {
-    this.store.dispatch(TodolistActions.deleteTodoList({ todoListId }));
-  }
+	deleteTodoListById(todoListId: number): void {
+		this.store.dispatch(TodolistActions.deleteTodoList({ todoListId }));
+	}
 
-  createOrUpdateTodoList(flag: string, todoList?: TodoList): void {
-    const todoListCopy = { ...todoList };
-    const dialogRef = this.dialog.open(TodoListDetailComponent, {
-      width: '500px',
-      data: {
-        list: todoListCopy !== undefined ? todoListCopy : ({} as TodoList),
-        flag: flag,
-      },
-    });
+	createOrUpdateTodoList(flag: string, todoList?: TodoList): void {
+		const todoListCopy = { ...todoList };
+		const dialogRef = this.dialog.open(TodoListDetailComponent, {
+			width: '500px',
+			data: {
+				list: todoListCopy !== undefined ? todoListCopy : ({} as TodoList),
+				flag: flag
+			}
+		});
 
-    dialogRef.afterClosed().subscribe((result) => {
-      return result;
-    });
-  }
+		dialogRef.afterClosed().subscribe((result) => {
+			return result;
+		});
+	}
 
-  public openDialogAddTask(todoList: EntityTodoList): void {
-    const dialogRef = this.dialog.open(TodoItemDetailComponent, {
-      width: '500px',
-      data: {
-        list: todoList,
-        item: {} as TodoItem,
-        flag: 'create',
-        id: todoList.id,
-      },
-    });
+	public openDialogAddTask(todoList: EntityTodoList): void {
+		this.dialog.open(TodoItemDetailComponent, {
+			width: '500px',
+			data: {
+				list: todoList,
+				item: {} as TodoItem,
+				flag: 'create',
+				id: todoList.id
+			}
+		});
+	}
 
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result !== undefined) {
-    //     todoList.items.push(result);
-    //   }
-    // });
-  }
+	public addNewItem(todoList: TodoList, todoItem: TodoItem): void {
+		this.store.dispatch(TodolistActions.addNewTodoItem({ todoList, todoItem }));
+	}
 
-  public addNewItem(todoList: TodoList, todoItem: TodoItem): void {
-    this.store.dispatch(TodolistActions.addNewTodoItem({ todoList, todoItem }));
-  }
+	public updateItem(todoList: TodoList, todoItem: TodoItem): void {
+		this.store.dispatch(TodolistActions.updateTodoItem({ todoList, todoItem }));
+	}
 
-  public updateItem(todoList: TodoList, todoItem: TodoItem): void {
-    this.store.dispatch(TodolistActions.updateTodoItem({ todoList, todoItem }));
-  }
-
-  public deleteItem(todoList: TodoList, todoItem: TodoItem): void {
-    this.store.dispatch(TodolistActions.deleteTodoItem({ todoList, todoItem }));
-  }
+	public deleteItem(todoList: TodoList, todoItem: TodoItem): void {
+		this.store.dispatch(TodolistActions.deleteTodoItem({ todoList, todoItem }));
+	}
 }

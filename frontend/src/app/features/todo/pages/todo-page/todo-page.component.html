@@ -1,26 +1,31 @@
-<div>
-  <section id="btns" style="margin: 10px">
-    <button mat-raised-button color="accent" (click)="createOrUpdateTodoList('create', undefined)">Add new todolist</button>
-  </section>
+<div style="margin: 10px">
+	<section>
+		<h1>Welcome Joe, here is your tasks</h1>
+	</section>
+	<section id="btns">
+		<button
+			mat-raised-button
+			color="accent"
+			(click)="createOrUpdateTodoList('create', undefined)"
+		>
+			Add new todolist
+		</button>
+	</section>
 
-  <section class="todolists" style="overflow-x: scroll">
-    <ng-container *ngIf="todoLists$ | async as todoLists; else empty">
-      <li *ngFor="let todolist of todoLists" style="display: inline">
-        <todo-list [todoList]="todolist"></todo-list>
-      </li>
-
-    </ng-container>
-    <ng-template #empty>
-    </ng-template>
-    <li style="display: inline">
-      <div id="blured">
-        <button mat-fab color="accent">
-          <mat-icon (click)="createOrUpdateTodoList('create', undefined)"
-            >add</mat-icon
-          >
-        </button>
-        <h2 id="blurred-title">blured title</h2>
-      </div>
-    </li>
-  </section>
+	<section class="todolists" style="overflow-x: scroll">
+		<ng-container *ngIf="todoLists$ | async as todoLists; else empty">
+			<li *ngFor="let todolist of todoLists" style="display: inline">
+				<todo-list [todoList]="todolist"></todo-list>
+			</li>
+		</ng-container>
+		<ng-template #empty> </ng-template>
+		<li style="display: inline">
+			<div id="blured">
+				<button mat-fab color="accent">
+					<mat-icon (click)="createOrUpdateTodoList('create', undefined)">add</mat-icon>
+				</button>
+				<h2 id="blurred-title">blured title</h2>
+			</div>
+		</li>
+	</section>
 </div>

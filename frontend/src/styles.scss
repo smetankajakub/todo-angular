@@ -1,24 +1,24 @@
 * {
-  font-family: "Roboto";
+	font-family: 'Roboto';
 }
 html {
-//   background-image: linear-gradient(to right, #ffffff, #eee, #ffff);
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
+	//   background-image: linear-gradient(to right, #ffffff, #eee, #ffff);
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
 }
 
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  overflow-x: auto;
-  width: max-content;
-  height: 100%;
+	margin: 0;
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
+	overflow-x: auto;
+	width: max-content;
+	height: 100%;
 }
 
 a {
-  cursor: pointer;
+	cursor: pointer;
 }
 mat-form-field.full {
-  width: 100%;
+	width: 100%;
 }

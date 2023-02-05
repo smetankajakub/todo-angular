@@ -16,12 +16,7 @@ import {
 import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import {
-	doc,
-	DocumentData,
-	DocumentReference,
-	Firestore
-} from '@angular/fire/firestore';
+import { doc, DocumentData, DocumentReference, Firestore } from '@angular/fire/firestore';
 import { setDoc } from 'firebase/firestore';
 @Injectable({
 	providedIn: 'root'
@@ -33,7 +28,7 @@ export class AuthService {
 		public router: Router,
 		public ngZone: NgZone, // NgZone service to remove outside scope warning
 		private auth: Auth,
-		private firestore: Firestore,
+		private firestore: Firestore
 	) {
 		/* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -86,20 +81,15 @@ export class AuthService {
 	}
 	// Sign in with Google
 	async googleAuth() {
-		return await signInWithPopup(this.auth, new GoogleAuthProvider()).then(
-			(result) => {
-				this.userData = result.user;
-				// this.ls.set('user', this.userData);
-				this.router.navigate(['/todolists']);
-			}
-		);
+		return await signInWithPopup(this.auth, new GoogleAuthProvider()).then((result) => {
+			this.userData = result.user;
+			// this.ls.set('user', this.userData);
+			this.router.navigate(['/todolists']);
+		});
 	}
 
 	async setUserData(user: User) {
-		const userRef: DocumentReference<DocumentData> = doc(
-			this.firestore,
-			`users/${user.uid}`
-		);
+		const userRef: DocumentReference<DocumentData> = doc(this.firestore, `users/${user.uid}`);
 		const userData: UserInfo = {
 			uid: user.uid,
 			email: user.email,

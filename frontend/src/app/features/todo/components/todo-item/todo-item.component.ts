@@ -8,35 +8,34 @@ import { EntityTodoList } from '../../state/todolists.state';
 import { TodoItemDetailComponent } from '../todo-item-detail/todo-item-detail.component';
 
 @Component({
-  selector: 'todolist-item',
-  templateUrl: './todo-item.component.html',
-  styleUrls: ['./todo-item.component.scss'],
+	selector: 'todolist-item',
+	templateUrl: './todo-item.component.html',
+	styleUrls: ['./todo-item.component.scss']
 })
 export class TodoItemComponent implements OnInit {
-  @Input() todoItem!: TodoItem;
-  @Input() todoList!: EntityTodoList;
+	@Input() todoItem!: TodoItem;
+	@Input() todoList!: EntityTodoList;
 
-  constructor(
-    public dialog: MatDialog,
-    private apiService: ApiService,
-    private todoService: TodoService
-  ) {}
+	constructor(
+		public dialog: MatDialog,
+		private todoService: TodoService
+	) {}
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  ngOnInit(): void {}
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	ngOnInit(): void {}
 
-  deleteItem(): void {
-    this.todoService.deleteItem(this.todoList, this.todoItem)
-  }
+	deleteItem(): void {
+		this.todoService.deleteItem(this.todoList, this.todoItem);
+	}
 
-  openDialogEditTask(): void {
-    const dialogRef = this.dialog.open(TodoItemDetailComponent, {
-      width: '500px',
-      data: {
-        item: { ...this.todoItem },
-        flag: 'update',
-        list: this.todoList
-      },
-    });
-  }
+	openDialogEditTask(): void {
+		this.dialog.open(TodoItemDetailComponent, {
+			width: '500px',
+			data: {
+				item: { ...this.todoItem },
+				flag: 'update',
+				list: this.todoList
+			}
+		});
+	}
 }

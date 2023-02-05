@@ -10,148 +10,142 @@ import { Update } from '@ngrx/entity';
 
 @Injectable()
 export class TodoListsEffects {
-  constructor(private actions$: Actions, private apiService: ApiService) {}
+	constructor(private actions$: Actions, private apiService: ApiService) {}
 
-  loadAllTodoLists$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(TodolistActions.loadAllTodoLists),
-      mergeMap(() =>
-        this.apiService.getAllTodoLists().pipe(
-          map((todolists) => {
-            return TodolistActions.loadAllTodoListSuccess({ todolists });
-          })
-        )
-      )
-    );
-  });
+	loadAllTodoLists$ = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(TodolistActions.loadAllTodoLists),
+			mergeMap(() =>
+				this.apiService.getAllTodoLists().pipe(
+					map((todolists) => {
+						return TodolistActions.loadAllTodoListSuccess({ todolists });
+					})
+				)
+			)
+		);
+	});
 
-  addNewTodoList$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(TodolistActions.addNewTodoList),
-      mergeMap((action) => {
-        return this.apiService.addTodoList(action.todoList).pipe(
-          map((data) => {
-            const todoList = { ...action.todoList, id: data.id };
-            return TodolistActions.addNewTodoListSuccess({ todoList });
-          })
-        );
-      })
-    );
-  });
+	addNewTodoList$ = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(TodolistActions.addNewTodoList),
+			mergeMap((action) => {
+				return this.apiService.addTodoList(action.todoList).pipe(
+					map((data) => {
+						const todoList = { ...action.todoList, id: data.id };
+						return TodolistActions.addNewTodoListSuccess({ todoList });
+					})
+				);
+			})
+		);
+	});
 
-  updateTodoList$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(TodolistActions.updateTodoList),
-      switchMap((action) => {
-        return this.apiService.updateTodoList(action.todoList).pipe(
-          map((data) => {
-            const updatedTodoList: Update<TodoList> = {
-              id: action.todoList.id,
-              changes: {
-                ...action.todoList,
-              },
-            };
-            return TodolistActions.updateTodoListSuccess({
-              todoList: updatedTodoList,
-            });
-          })
-        );
-      })
-    );
-  });
+	updateTodoList$ = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(TodolistActions.updateTodoList),
+			switchMap((action) => {
+				return this.apiService.updateTodoList(action.todoList).pipe(
+					map((data) => {
+						const updatedTodoList: Update<TodoList> = {
+							id: action.todoList.id,
+							changes: {
+								...action.todoList
+							}
+						};
+						return TodolistActions.updateTodoListSuccess({
+							todoList: updatedTodoList
+						});
+					})
+				);
+			})
+		);
+	});
 
-  deleteTodoList$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(TodolistActions.deleteTodoList),
-      switchMap((action) => {
-        return this.apiService.deleteTodoList(action.todoListId).pipe(
-          map((data) => {
-            return TodolistActions.deleteTodoListSuccess({
-              todoListId: action.todoListId,
-            });
-          })
-        );
-      })
-    );
-  });
+	deleteTodoList$ = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(TodolistActions.deleteTodoList),
+			switchMap((action) => {
+				return this.apiService.deleteTodoList(action.todoListId).pipe(
+					map((data) => {
+						return TodolistActions.deleteTodoListSuccess({
+							todoListId: action.todoListId
+						});
+					})
+				);
+			})
+		);
+	});
 
-  addNewTodoItem$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(TodolistActions.addNewTodoItem),
-      mergeMap((action) => {
-        return this.apiService
-          .addItemToList(action.todoList.id, action.todoItem)
-          .pipe(
-            map((data) => {
-              const updatedTodoList: Update<TodoList> = {
-                id: action.todoList.id,
-                changes: {
-                  items: [...action.todoList.items, action.todoItem],
-                },
-              };
-              // const todoList = { ...action.todoList, action.todoList.items };
-              return TodolistActions.addNewTodoItemSuccess({
-                todoList: updatedTodoList,
-              });
-            })
-          );
-      })
-    );
-  });
+	addNewTodoItem$ = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(TodolistActions.addNewTodoItem),
+			mergeMap((action) => {
+				return this.apiService.addItemToList(action.todoList.id, action.todoItem).pipe(
+					map((data) => {
+						const updatedTodoList: Update<TodoList> = {
+							id: action.todoList.id,
+							changes: {
+								items: [...action.todoList.items, action.todoItem]
+							}
+						};
+						// const todoList = { ...action.todoList, action.todoList.items };
+						return TodolistActions.addNewTodoItemSuccess({
+							todoList: updatedTodoList
+						});
+					})
+				);
+			})
+		);
+	});
 
-  updateTodoItem$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(TodolistActions.updateTodoItem),
-      mergeMap((action) => {
-        return this.apiService
-          .updateItem(action.todoList.id, action.todoItem)
-          .pipe(
-            map((data) => {
-              const index = action.todoList.items.findIndex(
-                (item) => item.id === action.todoItem.id
-              );
-              const copy = [...action.todoList.items];
-              copy.splice(index, 1);
-              const updatedTodoList: Update<TodoList> = {
-                id: action.todoList.id,
-                changes: {
-                  items: [...copy, action.todoItem],
-                },
-              };
-              return TodolistActions.updateTodoItemSuccess({
-                todoList: updatedTodoList,
-              });
-            })
-          );
-      })
-    );
-  });
+	updateTodoItem$ = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(TodolistActions.updateTodoItem),
+			mergeMap((action) => {
+				return this.apiService.updateItem(action.todoList.id, action.todoItem).pipe(
+					map((data) => {
+						const index = action.todoList.items.findIndex(
+							(item) => item.id === action.todoItem.id
+						);
+						const copy = [...action.todoList.items];
+						copy.splice(index, 1);
+						const updatedTodoList: Update<TodoList> = {
+							id: action.todoList.id,
+							changes: {
+								items: [...copy, action.todoItem]
+							}
+						};
+						return TodolistActions.updateTodoItemSuccess({
+							todoList: updatedTodoList
+						});
+					})
+				);
+			})
+		);
+	});
 
-  deleteTodoItem$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(TodolistActions.deleteTodoItem),
-      mergeMap((action) => {
-        return this.apiService
-          .deleteItem(action.todoList.id, action.todoItem.id)
-          .pipe(
-            map(() => {
-              const index = action.todoList.items.findIndex(
-                (item) => item.id === action.todoItem.id
-              );
-              const copy = [...action.todoList.items];
-              copy.splice(index, 1);
-              const updatedTodoList: Update<TodoList> = {
-                id: action.todoList.id,
-                changes: {
-                  items: [...copy],
-                },
-              };
-              return TodolistActions.deleteTodoItemSuccess({
-                todoList: updatedTodoList,
-              });
-            })
-          );
-      })
-    );
-  });
+	deleteTodoItem$ = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(TodolistActions.deleteTodoItem),
+			mergeMap((action) => {
+				return this.apiService.deleteItem(action.todoList.id, action.todoItem.id).pipe(
+					map(() => {
+						const index = action.todoList.items.findIndex(
+							(item) => item.id === action.todoItem.id
+						);
+						const copy = [...action.todoList.items];
+						copy.splice(index, 1);
+						const updatedTodoList: Update<TodoList> = {
+							id: action.todoList.id,
+							changes: {
+								items: [...copy]
+							}
+						};
+						return TodolistActions.deleteTodoItemSuccess({
+							todoList: updatedTodoList
+						});
+					})
+				);
+			})
+		);
+	});
 }

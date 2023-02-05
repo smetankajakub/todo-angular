@@ -17,34 +17,34 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { EffectsModule } from '@ngrx/effects';
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    provideAuth(() => {
-      return getAuth();
-    }),
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage()),
-    StoreModule.forRoot({}),
-    StoreDevtoolsModule.instrument({
-      name: 'Todolists app',
-      maxAge: 25,
-    }),
-    EffectsModule.forRoot([]),
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AppHttpInterceptor,
-      multi: true,
-    },
-    AuthService,
-  ],
-  bootstrap: [AppComponent],
-  exports: [AppRoutingModule],
+	declarations: [AppComponent],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		HttpClientModule,
+		provideAuth(() => {
+			return getAuth();
+		}),
+		provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+		provideFirestore(() => getFirestore()),
+		provideStorage(() => getStorage()),
+		StoreModule.forRoot({}),
+		StoreDevtoolsModule.instrument({
+			name: 'Todolists app',
+			maxAge: 25
+		}),
+		EffectsModule.forRoot([])
+	],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: AppHttpInterceptor,
+			multi: true
+		},
+		AuthService
+	],
+	bootstrap: [AppComponent],
+	exports: [AppRoutingModule]
 })
 export class AppModule {}

@@ -1,73 +1,65 @@
 <div class="todolist" name="todoLists">
-  <header>
-    <div>
-      <span>
-        <a>
-          <mat-icon
-            matSuffix
-            (click)="createOrUpdateTodoList('update', todoList)"
-            >edit</mat-icon
-          >
-          <mat-icon matSuffix (click)="deleteTodoList(todoList)"
-            >delete</mat-icon
-          >
-        </a>
-      </span>
-    </div>
-  </header>
-  <section class="btns">
-    <div>
-      <mat-form-field color="accent">
-        <input
-          matInput
-          type="text"
-          placeholder="Search"
-          [(ngModel)]="todoList.query"
-        />
-        <button mat-button matPrefix mat-icon-button>
-          <mat-icon>search</mat-icon>
-        </button>
-      </mat-form-field>
-      <button
-        class="new-task-btn"
-        mat-raised-button
-        color="accent"
-        (click)="openDialogAddTask(todoList)"
-      >
-        Add new task +
-      </button>
-    </div>
+	<header>
+		<div>
+			<span>
+				<a>
+					<mat-icon matSuffix (click)="createOrUpdateTodoList('update', todoList)"
+						>edit</mat-icon
+					>
+					<mat-icon matSuffix (click)="deleteTodoList(todoList)">delete</mat-icon>
+				</a>
+			</span>
+		</div>
+	</header>
+	<section class="btns">
+		<div>
+			<mat-form-field color="accent">
+				<input matInput type="text" placeholder="Search" [(ngModel)]="todoList.query" />
+				<button mat-button matPrefix mat-icon-button>
+					<mat-icon>search</mat-icon>
+				</button>
+			</mat-form-field>
+			<button
+				class="new-task-btn"
+				mat-raised-button
+				color="accent"
+				(click)="openDialogAddTask()"
+			>
+				Add new task +
+			</button>
+		</div>
 
-    <div id="radio-filter" name="radio-filter">
-      <label for="radio-filter">Items filter by status: </label>
-      <div>
-        <mat-radio-group
-          [(ngModel)]="todoList.radio"
-          (ngModelChange)="filterChange($event)"
-        >
-          <mat-radio-button [checked]="true" value="">All</mat-radio-button
-          >&nbsp; <mat-radio-button value="true">Done</mat-radio-button>&nbsp;
-          <mat-radio-button value="false">Active</mat-radio-button>&nbsp;
-        </mat-radio-group>
-      </div>
-    </div>
-  </section>
-  <section class="content">
-    <h2 class="todo-list-title">
-      {{ todoList.title }}
-    </h2>
+		<div id="radio-filter" name="radio-filter">
+			<label for="radio-filter">Items filter by status: </label>
+			<div>
+				<mat-radio-group [(ngModel)]="todoList.radio" (ngModelChange)="filterChange($event)">
+					<mat-radio-button [checked]="true" value="">All</mat-radio-button>&nbsp;
+					<mat-radio-button value="true">Done</mat-radio-button>&nbsp;
+					<mat-radio-button value="false">Active</mat-radio-button>&nbsp;
+				</mat-radio-group>
+			</div>
+		</div>
+	</section>
+	<section class="content">
+		<h2 class="todo-list-title">
+			{{ todoList.title }}
+		</h2>
 
-    <todolist-item
-      *ngFor="
-        let todoItem of todoList.items
-          | searchFilter : todoList.query
-          | radioFilter : todoList.radio
-      "
-      [todoList]="todoList"
-      [todoItem]="todoItem"
-    ></todolist-item>
-    <div class="bottom-btn" *ngIf="todoList.items && todoList.items.length > 0">
-      <button mat-mini-fab color="accent">+</button>
-    </div>
-  </section>
+		<todolist-item
+			*ngFor="
+				let todoItem of todoList.items
+					| searchFilter : todoList.query
+					| radioFilter : todoList.radio
+			"
+			[todoList]="todoList"
+			[todoItem]="todoItem"
+		></todolist-item>
+		<div
+			class="bottom-btn"
+			*ngIf="todoList.items && todoList.items.length > 0"
+			(click)="openDialogAddTask()"
+		>
+			<button mat-mini-fab color="accent">+</button>
+		</div>
+	</section>
 </div>

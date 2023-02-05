@@ -6,8 +6,8 @@ import { IdentityRoutingModule } from './identity-routing.module';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @NgModule({
-  declarations: [LoginComponent],
-  imports: [CommonModule, SharedModule],
-  exports: [IdentityRoutingModule],
+	declarations: [LoginComponent],
+	imports: [CommonModule, SharedModule],
+	exports: [IdentityRoutingModule]
 })
 export class IdentityModule {}

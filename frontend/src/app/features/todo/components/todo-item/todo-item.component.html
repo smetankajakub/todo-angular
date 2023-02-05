@@ -1,24 +1,17 @@
 <div
-  class="todo-item-container"
-  [ngStyle]="{ 'background-color': todoItem.done === true ? '#efe' : '#fff' }"
+	class="todo-item-container"
+	[ngStyle]="{ 'background-color': todoItem.done === true ? '#efe' : '#fff' }"
 >
-  <div class="item-btns">
-    <span>
-      <a (click)="openDialogEditTask()"><mat-icon matSuffix>edit</mat-icon></a>
-      <mat-icon
-        [ngStyle]="{
-          color: todoItem.done === true ? 'green' : 'red'
-        }"
-        matSuffix
-        >task</mat-icon
-      >
-
-      <a (click)="deleteItem()"><mat-icon matSuffix>delete</mat-icon></a>
-    </span>
-  </div>
-  <h2 class="item-title">{{ todoItem.title }}</h2>
-  <p class="description">{{ todoItem.description }}</p>
-  <p class="deadline">
-    {{ todoItem.deadline | date }}
-  </p>
+	<div class="item-btns">
+		<span>
+			<a (click)="openDialogEditTask()"><mat-icon matSuffix>edit</mat-icon></a>
+			<a (click)="deleteItem()"><mat-icon matSuffix>delete</mat-icon></a>
+		</span>
+	</div>
+	<h2 class="item-title">{{ todoItem.title }}</h2>
+	<p class="description">{{ todoItem.description }}</p>
+	<p class="deadline">
+		Deadline: {{ todoItem.deadline | date }} | Status:
+		{{ todoItem.done === true ? 'Done' : 'Active' }}
+	</p>
 </div>

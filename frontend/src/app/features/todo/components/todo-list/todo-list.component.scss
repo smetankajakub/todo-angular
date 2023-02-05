@@ -1,58 +1,58 @@
 .todolist {
-  border-radius: 3px;
-  width: 275px;
-  display: inline-block;
-  margin: 15px;
-  padding: 10px 15px 15px;
-  background-color: #fff;
-  box-shadow: #ccc 0px 5px 20px -5px;
-  vertical-align: top;
+	border-radius: 3px;
+	width: 275px;
+	display: inline-block;
+	margin: 15px;
+	padding: 10px 15px 15px;
+	background-color: #fff;
+	box-shadow: #ccc 0px 5px 20px -5px;
+	vertical-align: top;
 }
 
 header > div {
-  font-size: smaller;
-  color: #ccc;
-  margin: 0;
-  text-align: right;
+	font-size: smaller;
+	color: #ccc;
+	margin: 0;
+	text-align: right;
 }
 
 mat-icon {
-  text-align: right;
-  transform: scale(0.8);
-  cursor: pointer;
+	text-align: right;
+	transform: scale(0.8);
+	cursor: pointer;
 }
 
 section.btns > mat-form-field {
-  margin: auto;
-  width: 180px;
-  padding-left: 25px;
+	margin: auto;
+	width: 180px;
+	padding-left: 25px;
 }
 
 section.btns > div {
-  text-align: center;
-  width: 275px;
+	text-align: center;
+	width: 275px;
 }
 
 .new-task-btn {
-  width: 200px;
-  padding: 0 25px;
+	width: 200px;
+	padding: 0 25px;
 }
 
 .todo-list-title {
-  text-align: left;
-  padding: 0 25px;
-  margin-top: 0;
+	text-align: left;
+	padding: 0 25px;
+	margin-top: 0;
 }
 
 #radio-filter {
-  margin: 20px 0;
+	margin: 20px 0;
 }
 
 .bottom-btn {
-  text-align: center;
-  width: 200px;
-  border-style: dashed;
-  padding: 10px;
-  margin: auto;
-  color: #ccc;
+	text-align: center;
+	width: 200px;
+	border-style: dashed;
+	padding: 10px;
+	margin: auto;
+	color: #ccc;
 }

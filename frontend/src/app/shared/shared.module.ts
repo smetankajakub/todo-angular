@@ -4,8 +4,8 @@ import { RadioFilterPipe } from './pipes/radio-filter.pipe';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
 
 @NgModule({
-  declarations: [RadioFilterPipe, SearchFilterPipe],
-  imports: [CommonModule],
-  exports: [RadioFilterPipe, SearchFilterPipe],
+	declarations: [RadioFilterPipe, SearchFilterPipe],
+	imports: [CommonModule],
+	exports: [RadioFilterPipe, SearchFilterPipe]
 })
 export class SharedModule {}
