@@ -33,7 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 		MatListModule,
 		MatGridListModule,
 		MatCheckboxModule,
-		MatDialogModule,
+		MatDialogModule
 	],
 	exports: [IdentityRoutingModule]
 })

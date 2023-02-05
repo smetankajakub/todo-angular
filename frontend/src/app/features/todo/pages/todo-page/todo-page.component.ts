@@ -15,7 +15,11 @@ export class TodoPageComponent implements OnInit {
 	todoLists: TodoList[] = [];
 	todoItem!: TodoItem;
 
-	constructor(public dialog: MatDialog, private todoService: TodoService, public auth: AuthService) {}
+	constructor(
+		public dialog: MatDialog,
+		private todoService: TodoService,
+		public auth: AuthService
+	) {}
 
 	ngOnInit(): void {
 		this.todoLists$ = this.todoService.getTodoLists();

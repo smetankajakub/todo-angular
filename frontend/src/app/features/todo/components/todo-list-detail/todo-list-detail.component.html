@@ -1,20 +1,13 @@
 <ng-container>
 	<form [formGroup]="todoListDetailForm" (ngSubmit)="onSubmit()">
-		<label for="todoListDetailForm"><h1>Todo List {{ data.flag }}</h1></label>
+		<label for="todoListDetailForm"
+			><h1>Todo List {{ data.flag }}</h1></label
+		>
 		<mat-form-field class="form-element" appearance="fill">
 			<mat-label>Title</mat-label>
-			<input
-				matInput
-				type="string"
-				id="todoListId"
-				formControlName="title"
-			/>
-			<mat-error>
-			</mat-error>
+			<input matInput type="string" id="todoListId" formControlName="title" />
+			<mat-error> </mat-error>
 		</mat-form-field>
-		<button type="submit" mat-raised-button [disabled]="!todoListDetailForm.valid">
-			Save
-		</button>
-
+		<button type="submit" mat-raised-button [disabled]="!todoListDetailForm.valid">Save</button>
 	</form>
 </ng-container>

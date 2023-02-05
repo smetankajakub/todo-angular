@@ -24,20 +24,14 @@ export const loadAllTodoListSuccess = createAction(
 	props<{ todolists: TodoList[] }>()
 );
 
-export const addNewTodoList = createAction(
-	ADD_NEW_TODO_LIST,
-	props<{ todoList: TodoList }>()
-);
+export const addNewTodoList = createAction(ADD_NEW_TODO_LIST, props<{ todoList: TodoList }>());
 
 export const addNewTodoListSuccess = createAction(
 	ADD_NEW_TODO_LIST_SUCCESS,
 	props<{ todoList: TodoList }>()
 );
 
-export const updateTodoList = createAction(
-	UPDATE_TODO_LIST,
-	props<{ todoList: TodoList }>()
-);
+export const updateTodoList = createAction(UPDATE_TODO_LIST, props<{ todoList: TodoList }>());
 
 export const updateTodoListSuccess = createAction(
 	UPDATE_TODO_LIST_SUCCESS,

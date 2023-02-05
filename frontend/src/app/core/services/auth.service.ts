@@ -73,14 +73,13 @@ export class AuthService {
 	}
 
 	get isLoggedIn(): boolean {
-		// return true;
 		const user = window.localStorage.getItem('user');
 		if (user !== null) {
 			return user !== null ? true : false;
 		}
 		return false;
 	}
-	// Sign in with Google
+
 	async googleAuth() {
 		return await signInWithPopup(this.auth, new GoogleAuthProvider()).then((result) => {
 			this.userData = result.user;
@@ -89,6 +88,7 @@ export class AuthService {
 			} as ApiUser);
 		});
 	}
+
 	public getUserId(): string {
 		const value = window.localStorage.getItem('apiId');
 		return value !== null ? JSON.parse(value) : '';
