@@ -19,3 +19,21 @@
 	filter: blur(4px);
 	color: #ccc;
 }
+
+div#page {
+	margin: 30px;
+}
+
+section#btns{
+	margin: 20px;
+	button {
+		margin: 0 10px
+	}
+}
+
+div#logout {
+	width: 100%;
+	padding: 5px;
+	float: right;
+	text-align: right;
+}

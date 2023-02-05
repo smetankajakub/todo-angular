@@ -3,22 +3,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
-	selector: 'app-login',
-	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss']
+	selector: 'app-sign-up',
+	templateUrl: './sign-up.component.html',
+	styleUrls: ['./sign-up.component.scss']
 })
-export class LoginComponent implements OnInit {
-	loginForm!: FormGroup;
+export class SignUpComponent implements OnInit {
+	signUpForm!: FormGroup;
 	constructor(public authService: AuthService, public fb: FormBuilder) {}
 
 	ngOnInit(): void {
-		this.loginForm = this.fb.group({
+		this.signUpForm = this.fb.group({
 			name: ['', [Validators.required]],
-			password: ['', [Validators.required]]
+			password: ['', [Validators.required]],
 		});
 	}
 
 	onSubmit(): void {
-		this.authService.signIn(this.loginForm.value.name, this.loginForm.value.password);
+		this.authService.signUp(this.signUpForm.value.name, this.signUpForm.value.password);
 	}
 }

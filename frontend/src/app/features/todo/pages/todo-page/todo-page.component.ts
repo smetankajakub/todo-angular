@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { TodoItem } from '../../models/todo-item';
 import { TodoList } from '../../models/todo-list';
 import { TodoService } from '../../services/todo.service';
@@ -14,7 +15,7 @@ export class TodoPageComponent implements OnInit {
 	todoLists: TodoList[] = [];
 	todoItem!: TodoItem;
 
-	constructor(public dialog: MatDialog, private todoService: TodoService) {}
+	constructor(public dialog: MatDialog, private todoService: TodoService, public auth: AuthService) {}
 
 	ngOnInit(): void {
 		this.todoLists$ = this.todoService.getTodoLists();

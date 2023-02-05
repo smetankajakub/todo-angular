@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
 	{
 		path: 'todo',
-		loadChildren: () => import('./features/todo/todo.module').then((m) => m.TodoModule)
+		loadChildren: () => import('./features/todo/todo.module').then((m) => m.TodoModule),
+		canActivate: [AuthGuard]
 	},
 	{
 		path: 'identity',

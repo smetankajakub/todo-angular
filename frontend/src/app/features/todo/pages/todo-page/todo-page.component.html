@@ -1,18 +1,25 @@
-<div style="margin: 10px">
-	<section>
-		<h1>Welcome Joe, here is your tasks</h1>
+<div id="page">
+	<section id="welcome">
+		<h1>Welcome, what's your tasks today?</h1>
 	</section>
 	<section id="btns">
 		<button
 			mat-raised-button
-			color="accent"
+			color="primary"
 			(click)="createOrUpdateTodoList('create', undefined)"
 		>
 			Add new todolist
 		</button>
+		<button
+		mat-raised-button
+		color="basic"
+		(click)="auth.signOut()"
+	>
+		logout
+	</button>
 	</section>
 
-	<section class="todolists" style="overflow-x: scroll">
+	<section class="todolists">
 		<ng-container *ngIf="todoLists$ | async as todoLists; else empty">
 			<li *ngFor="let todolist of todoLists" style="display: inline">
 				<todo-list [todoList]="todolist"></todo-list>

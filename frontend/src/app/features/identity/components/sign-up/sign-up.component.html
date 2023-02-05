@@ -1,9 +1,9 @@
 <ng-container>
 	<div id="identity-page">
 		<div class="form-wrapper">
-			<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+			<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
 				<label for="todoItemDetailForm">
-					<h1 mat-dialog-title class="center">Login</h1>
+					<h1 mat-dialog-title class="center">Sign Up</h1>
 				</label>
 				<mat-form-field class="form-element" appearance="fill">
 					<mat-label>Email</mat-label>
@@ -27,14 +27,14 @@
 					/>
 				</mat-form-field>
 				<div #footer>
-					<button type="submit" mat-raised-button [disabled]="!loginForm.valid">Login</button>
+					<button type="submit" mat-raised-button [disabled]="!signUpForm.valid">Login</button>
 					<p class="center">OR</p>
 					<button mat-raised-button color="primary" (click)="authService.googleAuth()">
 						Continue with google
 					</button>
 				</div>
 				<p class="center">
-					Don't have account ?&nbsp;<span><a [routerLink]="'../sign-up'">Sign up</a></span>
+					Have an account already ?&nbsp;<span><a [routerLink]="'../login'">Log In</a></span>
 				</p>
 			</form>
 		</div>
