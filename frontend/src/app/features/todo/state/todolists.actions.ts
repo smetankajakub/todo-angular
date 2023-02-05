@@ -2,7 +2,6 @@ import { Update } from '@ngrx/entity';
 import { createAction, props } from '@ngrx/store';
 import { TodoItem } from '../models/todo-item';
 import { TodoList } from '../models/todo-list';
-import { EntityTodoList } from './todolists.state';
 
 export const LOAD_ALL_TODO_LISTS = '[TODO LISTS] load all';
 export const LOAD_ALL_TODO_LISTS_SUCCESS = '[TODO LISTS] load all successfully';
@@ -22,27 +21,27 @@ export const DELETE_TODO_ITEM_SUCCESS = '[TODO LIST ITEM] delete item successful
 export const loadAllTodoLists = createAction(LOAD_ALL_TODO_LISTS);
 export const loadAllTodoListSuccess = createAction(
 	LOAD_ALL_TODO_LISTS_SUCCESS,
-	props<{ todolists: EntityTodoList[] }>()
+	props<{ todolists: TodoList[] }>()
 );
 
 export const addNewTodoList = createAction(
 	ADD_NEW_TODO_LIST,
-	props<{ todoList: EntityTodoList }>()
+	props<{ todoList: TodoList }>()
 );
 
 export const addNewTodoListSuccess = createAction(
 	ADD_NEW_TODO_LIST_SUCCESS,
-	props<{ todoList: EntityTodoList }>()
+	props<{ todoList: TodoList }>()
 );
 
 export const updateTodoList = createAction(
 	UPDATE_TODO_LIST,
-	props<{ todoList: EntityTodoList }>()
+	props<{ todoList: TodoList }>()
 );
 
 export const updateTodoListSuccess = createAction(
 	UPDATE_TODO_LIST_SUCCESS,
-	props<{ todoList: Update<EntityTodoList> }>()
+	props<{ todoList: Update<TodoList> }>()
 );
 
 export const deleteTodoList = createAction(DELETE_TODO_LIST, props<{ todoListId: number }>());
@@ -54,30 +53,30 @@ export const deleteTodoListSuccess = createAction(
 
 export const addNewTodoItem = createAction(
 	ADD_NEW_TODO_ITEM,
-	props<{ todoList: EntityTodoList; todoItem: TodoItem }>()
+	props<{ todoList: TodoList; todoItem: TodoItem }>()
 );
 
 export const addNewTodoItemSuccess = createAction(
 	ADD_NEW_TODO_ITEM_SUCCESS,
-	props<{ todoList: Update<EntityTodoList> }>()
+	props<{ todoList: Update<TodoList> }>()
 );
 
 export const updateTodoItem = createAction(
 	UPDATE_TODO_ITEM,
-	props<{ todoList: EntityTodoList; todoItem: TodoItem }>()
+	props<{ todoList: TodoList; todoItem: TodoItem }>()
 );
 
 export const updateTodoItemSuccess = createAction(
 	UPDATE_TODO_ITEM_SUCCESS,
-	props<{ todoList: Update<EntityTodoList> }>()
+	props<{ todoList: Update<TodoList> }>()
 );
 
 export const deleteTodoItem = createAction(
 	DELETE_TODO_ITEM,
-	props<{ todoList: EntityTodoList; todoItem: TodoItem }>()
+	props<{ todoList: TodoList; todoItem: TodoItem }>()
 );
 
 export const deleteTodoItemSuccess = createAction(
 	DELETE_TODO_ITEM_SUCCESS,
-	props<{ todoList: Update<EntityTodoList> }>()
+	props<{ todoList: Update<TodoList> }>()
 );

@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ApiService } from 'src/app/core/services/api.service';
 import { TodoItem } from '../../models/todo-item';
 import { TodoList } from '../../models/todo-list';
 import { TodoService } from '../../services/todo.service';
-import { EntityTodoList } from '../../state/todolists.state';
 import { TodoItemDetailComponent } from '../todo-item-detail/todo-item-detail.component';
 
 @Component({
@@ -14,12 +12,9 @@ import { TodoItemDetailComponent } from '../todo-item-detail/todo-item-detail.co
 })
 export class TodoItemComponent implements OnInit {
 	@Input() todoItem!: TodoItem;
-	@Input() todoList!: EntityTodoList;
+	@Input() todoList!: TodoList;
 
-	constructor(
-		public dialog: MatDialog,
-		private todoService: TodoService
-	) {}
+	constructor(public dialog: MatDialog, private todoService: TodoService) {}
 
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	ngOnInit(): void {}

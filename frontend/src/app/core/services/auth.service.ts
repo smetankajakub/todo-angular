@@ -6,7 +6,6 @@ import {
 	signInWithEmailAndPassword,
 	createUserWithEmailAndPassword,
 	sendEmailVerification,
-	sendPasswordResetEmail,
 	User,
 	authState,
 	GoogleAuthProvider,
@@ -34,7 +33,7 @@ export class AuthService {
     logged in and setting up null when logged out */
 		this.user$ = user(auth);
 		authState(auth).subscribe((user) => {
-			console.log('in auth state');
+			console.log('in auth state', user);
 			// if (user) {
 			// 	this.userData = user;
 			// 	this.ls.set('user', this.userData);

@@ -8,21 +8,20 @@ import { TodoItem } from '../models/todo-item';
 import { TodoList } from '../models/todo-list';
 import * as TodolistActions from '../state/todolists.actions';
 import { getTodoLists } from '../state/todolists.selector';
-import { EntityTodoList } from '../state/todolists.state';
 @Injectable()
 export class TodoService {
 	constructor(private store: Store, private dialog: MatDialog) {}
 
-	getTodoLists(): Observable<EntityTodoList[]> {
+	getTodoLists(): Observable<TodoList[]> {
 		this.store.dispatch(TodolistActions.loadAllTodoLists());
 		return this.store.select(getTodoLists);
 	}
 
-	addNewTodo(todoList: EntityTodoList): void {
+	addNewTodo(todoList: TodoList): void {
 		this.store.dispatch(TodolistActions.addNewTodoList({ todoList }));
 	}
 
-	updateTodo(todoList: EntityTodoList): void {
+	updateTodo(todoList: TodoList): void {
 		this.store.dispatch(TodolistActions.updateTodoList({ todoList }));
 	}
 
@@ -45,7 +44,7 @@ export class TodoService {
 		});
 	}
 
-	public openDialogAddTask(todoList: EntityTodoList): void {
+	public openDialogAddTask(todoList: TodoList): void {
 		this.dialog.open(TodoItemDetailComponent, {
 			width: '500px',
 			data: {
