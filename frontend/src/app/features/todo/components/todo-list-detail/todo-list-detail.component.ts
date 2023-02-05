@@ -5,7 +5,6 @@ import { ApiService } from 'src/app/core/services/api/todo.service';
 import { TodoList } from '../../models/todo-list';
 import { TodoService } from '../../services/todo.service';
 
-//TODO: Put to separate file, improve name to be more precious
 export interface Data {
 	list: TodoList;
 	flag: string;

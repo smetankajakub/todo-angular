@@ -5,7 +5,6 @@ import * as TodolistActions from './todolists.actions';
 const _todoListsReducer = createReducer(
 	initialState,
 	on(TodolistActions.loadAllTodoListSuccess, (state, action) => {
-		// return todoListAdapter.setAll(action., state);
 		return todoListAdapter.setAll(action.todolists, state);
 	}),
 	on(TodolistActions.addNewTodoListSuccess, (state, action) => {

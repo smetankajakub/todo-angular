@@ -19,15 +19,9 @@ const API_URL = environment.apiUrl;
 export class ApiService {
 	log: any = '';
 	private TODO_LISTS_URL: string = API_URL + 'users/' + this.auth.getUserId() + '/';
-	// private TODO_LISTS_URL: string = API_URL + 'users/';
+	
 	constructor(private http: HttpClient, private auth: AuthService) {}
-
-	// createUser(user: ApiUser): Observable<ApiUser> {
-	// 	return this.http
-	// 		.post<ApiUser>(API_URL + 'users' , user);
-	// 		// .pipe(catchError(this.handleError<ApiUser>('createUser', user)));
-	// }
-
+	
 	////////////////////////////////////////////TODO LIST ///////////////////////////////////////////////////
 	// GET -all todolists from mockapi.io
 	// GET /todolist

@@ -87,7 +87,6 @@ export class TodoListsEffects {
 								items: [...action.todoList.items, action.todoItem]
 							}
 						};
-						// const todoList = { ...action.todoList, action.todoList.items };
 						return TodolistActions.addNewTodoItemSuccess({
 							todoList: updatedTodoList
 						});

@@ -4,8 +4,6 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoRoutingModule } from './todo-routing.module';
 import { TodoPageComponent } from './pages/todo-page/todo-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-//ANGULAR MATERIAL
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';

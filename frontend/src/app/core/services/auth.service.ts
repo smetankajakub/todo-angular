@@ -14,7 +14,6 @@ import {
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { Firestore } from '@angular/fire/firestore';
 import { ApiUser } from './api/todo.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -28,15 +27,12 @@ export interface CustomUser extends UserInfo {
 })
 export class AuthService {
 	user$: Observable<User | null> | undefined;
-	userData!: CustomUser; // Save logged in user data
+	userData!: CustomUser;
 	constructor(
 		public router: Router,
 		private auth: Auth,
-		private firestore: Firestore,
 		private http: HttpClient
 	) {
-		/* Saving user data in localstorage when 
-    logged in and setting up null when logged out */
 		this.user$ = user(auth);
 		authState(auth).subscribe((user) => {
 			if (user) {
@@ -47,7 +43,7 @@ export class AuthService {
 			}
 		});
 	}
-	// Sign in with email/password
+
 	async signIn(email: string, password: string) {
 		return await signInWithEmailAndPassword(this.auth, email, password)
 			.then((userCredentials) => {

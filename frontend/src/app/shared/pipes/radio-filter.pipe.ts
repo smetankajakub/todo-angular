@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { TodoItem } from 'src/app/features/todo/models/todo-item';
-// import { TodoItem } from 'src/app/features/todo/models/todo-item';
 @Pipe({
 	name: 'radioFilter'
 })
