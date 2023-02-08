@@ -84,7 +84,10 @@ export class TodoListsEffects {
 						const updatedTodoList: Update<TodoList> = {
 							id: action.todoList.id,
 							changes: {
-								items: [...action.todoList.items, action.todoItem]
+								items:
+									action.todoList.items !== undefined
+										? [...action.todoList.items, action.todoItem]
+										: [action.todoItem]
 							}
 						};
 						return TodolistActions.addNewTodoItemSuccess({
