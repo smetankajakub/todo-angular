@@ -4,7 +4,7 @@ import { TodoList } from '../../models/todo-list';
 import { TodoService } from '../../services/todo.service';
 
 @Component({
-	selector: 'todo-list',
+	selector: 'app-todo-list',
 	templateUrl: './todo-list.component.html',
 	styleUrls: ['./todo-list.component.scss']
 })

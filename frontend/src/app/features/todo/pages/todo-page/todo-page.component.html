@@ -16,7 +16,7 @@
 	<section class="todolists">
 		<ng-container *ngIf="todoLists$ | async as todoLists; else empty">
 			<li *ngFor="let todolist of todoLists" style="display: inline">
-				<todo-list [todoList]="todolist"></todo-list>
+				<app-todo-list [todoList]="todolist"></app-todo-list>
 			</li>
 		</ng-container>
 		<ng-template #empty> </ng-template>

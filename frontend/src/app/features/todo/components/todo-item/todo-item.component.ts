@@ -6,7 +6,7 @@ import { TodoService } from '../../services/todo.service';
 import { TodoItemDetailComponent } from '../todo-item-detail/todo-item-detail.component';
 
 @Component({
-	selector: 'todolist-item',
+	selector: 'app-todolist-item',
 	templateUrl: './todo-item.component.html',
 	styleUrls: ['./todo-item.component.scss']
 })
@@ -16,7 +16,6 @@ export class TodoItemComponent implements OnInit {
 
 	constructor(public dialog: MatDialog, private todoService: TodoService) {}
 
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	ngOnInit(): void {}
 
 	deleteItem(): void {
@@ -27,7 +26,7 @@ export class TodoItemComponent implements OnInit {
 		this.dialog.open(TodoItemDetailComponent, {
 			width: '500px',
 			data: {
-				item: { ...this.todoItem },
+				item: this.todoItem,
 				flag: 'update',
 				list: this.todoList
 			}

@@ -45,7 +45,7 @@
 			{{ todoList.title }}
 		</h2>
 
-		<todolist-item
+		<app-todolist-item
 			*ngFor="
 				let todoItem of todoList.items
 					| searchFilter : todoList.query
@@ -53,7 +53,7 @@
 			"
 			[todoList]="todoList"
 			[todoItem]="todoItem"
-		></todolist-item>
+		></app-todolist-item>
 		<div
 			class="bottom-btn"
 			*ngIf="todoList.items && todoList.items.length > 0"

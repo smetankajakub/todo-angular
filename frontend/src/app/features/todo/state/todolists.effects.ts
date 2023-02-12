@@ -7,6 +7,7 @@ import * as TodolistActions from './todolists.actions';
 import { TodoList } from '../models/todo-list';
 import { Update } from '@ngrx/entity';
 import { ApiService } from '../../../core/services/api/todo.service';
+import { TodoItem } from '../models/todo-item';
 
 @Injectable()
 export class TodoListsEffects {
@@ -80,13 +81,13 @@ export class TodoListsEffects {
 			ofType(TodolistActions.addNewTodoItem),
 			mergeMap((action) => {
 				return this.apiService.addItemToList(action.todoList.id, action.todoItem).pipe(
-					map(() => {
+					map((todoItem: TodoItem) => {
 						const updatedTodoList: Update<TodoList> = {
 							id: action.todoList.id,
 							changes: {
 								items:
 									action.todoList.items !== undefined
-										? [...action.todoList.items, action.todoItem]
+										? [...action.todoList.items, todoItem]
 										: [action.todoItem]
 							}
 						};

@@ -39,6 +39,7 @@ export class TodoItemDetailComponent implements OnInit {
 
 	onSubmit(): void {
 		this.data.item = { id: this.data.item.id, ...this.todoItemDetailForm.value } as TodoItem;
+		console.log(this.data.item);
 		this.save(this.data.item, this.data.list);
 	}
 	ngOnInit(): void {
