@@ -1,9 +1,9 @@
 import { writeFile } from 'fs';
-const targetPath = './src/environments/environment-test.ts';
+const targetPath = './src/environments/environment.production.ts';
 import dotenv from 'dotenv';
 dotenv.config();
 const envConfigFile = `export const environment = {
-	production: '${process.env.PRODUCTION}}',
+	production: ${process.env.PRODUCTION},
 	apiUrl: '${process.env.API_URL}',
 	firebaseConfig: {
 		apiKey: '${process.env.FIREBASE_API_KEY}',
@@ -20,7 +20,7 @@ writeFile(targetPath, envConfigFile, function (err) {
 		throw console.error(err);
 	} else {
 		console.log(
-			`Angular environment.ts file generated correctly at ${targetPath} \n`
+			`Angular environment.production.ts file generated correctly at ${targetPath} \n`
 		);
 	}
 });
