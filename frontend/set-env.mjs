@@ -1,5 +1,5 @@
 import { writeFile } from 'fs';
-const targetPath = './src/environments/environment.production.ts';
+const targetPath = './src/environments/environment.prod.ts';
 import dotenv from 'dotenv';
 dotenv.config();
 const envConfigFile = `export const environment = {
