@@ -4,9 +4,9 @@ import { mergeMap, map, switchMap } from 'rxjs/operators';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as TodolistActions from './todolists.actions';
-import { ApiService } from 'src/app/core/services/api/todo.service';
 import { TodoList } from '../models/todo-list';
 import { Update } from '@ngrx/entity';
+import { ApiService } from '../../../core/services/api/todo.service';
 
 @Injectable()
 export class TodoListsEffects {

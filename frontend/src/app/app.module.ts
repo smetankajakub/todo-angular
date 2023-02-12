@@ -11,11 +11,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 
-import { environment } from 'src/environments/environment';
 import { AuthService } from './core/services/auth.service';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { EffectsModule } from '@ngrx/effects';
+import { environment } from 'src/environments/environment';
 @NgModule({
 	declarations: [AppComponent],
 	imports: [

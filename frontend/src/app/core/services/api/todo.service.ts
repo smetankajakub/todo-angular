@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 import { TodoItem } from '../../../features/todo/models/todo-item';
 import { TodoList } from '../../../features/todo/models/todo-list';
 import { AuthService } from '../auth.service';
+import { environment } from '../../../../environments/environment';
 
 export interface ApiUser {
 	apiId?: string;

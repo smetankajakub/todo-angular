@@ -16,7 +16,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TodoItemDetailComponent } from './components/todo-item-detail/todo-item-detail.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { TodoService } from './services/todo.service';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { StoreModule } from '@ngrx/store';
@@ -24,6 +23,7 @@ import { todoListsReducer } from './state/todolists.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { TodoListsEffects } from './state/todolists.effects';
 import { TodoListDetailComponent } from './components/todo-list-detail/todo-list-detail.component';
+import { SharedModule } from '../../shared/shared.module';
 @NgModule({
 	declarations: [
 		TodoListComponent,

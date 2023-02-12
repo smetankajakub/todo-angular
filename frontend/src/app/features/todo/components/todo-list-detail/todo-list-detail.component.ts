@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ApiService } from 'src/app/core/services/api/todo.service';
+import { ApiService } from '../../../../core/services/api/todo.service';
 import { TodoList } from '../../models/todo-list';
 import { TodoService } from '../../services/todo.service';
 

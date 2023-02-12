@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
 	selector: 'app-sign-up',
-	templateUrl: './sign-up.component.html',
-	styleUrls: ['./sign-up.component.scss']
+	templateUrl: './sign-up.component.html'
 })
 export class SignUpComponent implements OnInit {
 	signUpForm!: FormGroup;
